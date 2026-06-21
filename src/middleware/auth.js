@@ -9,7 +9,7 @@ export default async function auth(req, res, next) {
     }
 
     const token = header.split(' ')[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET));
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const [rows] = await pool.query('SELECT id, name, email, avatar_url, role FROM users WHERE id = ?', [decoded.userId]);
     if (rows.length === 0) {
